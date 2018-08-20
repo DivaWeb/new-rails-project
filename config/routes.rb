@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
-  get 'welcome/show'
-  get 'welcome/edit'
-  get 'welcome/new'
+  devise_for :users
+  resources 'welcome'
+  root to: 'welcome#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
