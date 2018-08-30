@@ -1,0 +1,25 @@
+<h1>Wiki List</h1>
+
+<%= link_to 'New Wiki', new_wiki_path %>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Body</th>
+    <th></th>
+  </tr>
+
+  <% @wikis.each do |wiki| %>
+  <tr>
+    <td><%= @wiki.title %></td>
+    <td><%= @wiki.body %></td>
+    <td><%= link_to 'New Wiki', new_wiki_path %></td>
+    <td><%= link_to 'Show', wiki_path(wiki) %></td>
+    <td><%= link_to 'Edit', edit_wiki_path(wiki) %></td>
+    <td><%= link_to 'Back', wikis_path %>
+    <td><%= link_to 'Destroy', wiki_path(wiki),
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+  <% end %>
+</table>
