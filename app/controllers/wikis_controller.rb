@@ -1,10 +1,10 @@
 class WikisController < ApplicationController
   def index
-    @wikis = Wiki.all
+    @wikis = policy_scope(Wiki)
   end
 
   def show
-    @wiki = Wiki.find(params[:id])
+    @wiki = policy_scope(Wiki).find(params[:id])
   end
 
   def new
@@ -27,7 +27,7 @@ class WikisController < ApplicationController
 
   def update
     @wiki = Wiki.find(params[:id])
-
+    authorize wiki
     if @wiki.update(wiki_params)
       redirect_to @wiki
     else
@@ -35,13 +35,12 @@ class WikisController < ApplicationController
     end
   end
 
- def destroy
-   @wiki = Wiki.find(params[:id])
-   @wiki.destroy
+  def destroy
+    @wiki = Wiki.find(params[:id])
+    @wiki.destroy
 
-   redirect_to wikis_path
- end
-
+    redirect_to wikis_path
+  end
 
   private
   def wiki_params
