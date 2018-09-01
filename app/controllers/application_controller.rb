@@ -1,7 +1,10 @@
 class ApplicationController < ActionController::Base
   include Pundit
   protect_from_forgery
-  after_action :verify_authorized, except: :index
-  before_action :authenticate_user!
+
+  def pundit_user
+    user.new(current_user, current_wiki)
+  end
+
 
 end

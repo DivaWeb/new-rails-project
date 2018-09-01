@@ -1,10 +1,10 @@
 class WikisController < ApplicationController
   def index
-    @wikis = policy_scope(Wiki)
+    @wikis = Wiki.all
   end
 
   def show
-    @wiki = policy_scope(Wiki).find(params[:id])
+    @wiki = Wiki.find(params[:id])
   end
 
   def new
@@ -27,7 +27,7 @@ class WikisController < ApplicationController
 
   def update
     @wiki = Wiki.find(params[:id])
-    authorize wiki
+    authorize @wiki
     if @wiki.update(wiki_params)
       redirect_to @wiki
     else

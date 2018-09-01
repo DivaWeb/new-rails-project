@@ -1,8 +1,8 @@
 class ApplicationPolicy
-  attr_reader :user, :record
+  attr_reader :request_wiki :user, :record
 
   def initialize(user, record)
-
+    @wiki = wiki
     @user = user
     @record = record
   end

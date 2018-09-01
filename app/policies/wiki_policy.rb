@@ -1,10 +1,10 @@
 class WikiPolicy < ApplicationPolicy
   class Scope < Scope
-    attr_reader :user, :scope
+    attr_reader :user, :wiki
 
-    def initialze(user, scope)
+    def initialze(user, wiki)
       @user = user
-      @scope = scope
+      @wiki = wiki
     end
     def resolve
       scope.all
@@ -13,4 +13,3 @@ class WikiPolicy < ApplicationPolicy
     end
     end
   end
-end
