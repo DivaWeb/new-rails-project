@@ -33,7 +33,7 @@ gem 'thor', '0.20.0'
 gem 'bootstrap-sass'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
-
+gem "pundit"
 group :production do
   gem 'pg'
 end
