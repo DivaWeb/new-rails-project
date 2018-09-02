@@ -2,7 +2,8 @@ require 'faker'
 
 100.times do
   User.create!({
-   user: Faker::Name.unique.name
+   email: Faker::Internet.free_email,
+   password: Faker::Internet.password
   })
 end
 
