@@ -32,6 +32,7 @@ gem 'thor', '0.20.0'
 # gem 'capistrano-rails', group: :development
 gem 'bootstrap-sass'
 # Reduces boot times through caching; required in config/boot.rb
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem "pundit"
 group :production do
