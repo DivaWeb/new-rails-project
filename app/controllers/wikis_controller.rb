@@ -1,7 +1,11 @@
 class WikisController < ApplicationController
+  #before_action :authenticate_user!, except: :index
+  #skip_before_action :authenticate_user!, only: [:index, :show]
   def index
     @wikis = Wiki.all
+    #authorize @wikis
   end
+
 
   def show
     @wiki = Wiki.find(params[:id])
@@ -9,10 +13,12 @@ class WikisController < ApplicationController
 
   def new
     @wiki = Wiki.new
+
   end
 
   def edit
     @wiki = Wiki.find(params[:id])
+     authorize @wiki
   end
 
   def create
@@ -27,7 +33,7 @@ class WikisController < ApplicationController
 
   def update
     @wiki = Wiki.find(params[:id])
-
+     authorize @wiki
     if @wiki.update(wiki_params)
       redirect_to @wiki
     else
@@ -35,12 +41,17 @@ class WikisController < ApplicationController
     end
   end
 
- def destroy
-   @wiki = Wiki.find(params[:id])
-   @wiki.destroy
-
-   redirect_to wikis_path
- end
+  def destroy
+    @wiki = Wiki.find(params[:id])
+    authorize @wiki
+    if @wiki.destroy
+      flash[:notice] = "\"#{@wiki.title}\"was deleted successfully."
+      redirect_to wikis_path
+    else
+      flash.now[:alert] = "There was an error deleting the post."
+      render :show
+    end
+  end
 
 
   private
