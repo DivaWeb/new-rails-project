@@ -35,6 +35,8 @@ gem 'bootstrap-sass'
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem "pundit"
+gem 'stripe'
+gem 'figaro', '1.0'
 group :production do
   gem 'pg'
 end
