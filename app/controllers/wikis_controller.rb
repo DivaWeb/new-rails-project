@@ -1,6 +1,6 @@
 class WikisController < ApplicationController
   #before_action :authenticate_user!, except: :index
-  #skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_before_action :authenticate_user!, only: [:index, :show]
   def index
     @wikis = Wiki.all
     #authorize @wikis
