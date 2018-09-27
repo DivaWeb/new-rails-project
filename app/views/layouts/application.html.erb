@@ -17,7 +17,7 @@
   <% if @user && @current_user.role == "standard" || @user && @current_user.role == "admin" %>
     <%= link_to "Upgrade to Premium", charges_path %>
     <% else %>
-    <%= link_to "Downgrade to Standard", downgrade_update_path %>
+    <%= link_to "Downgrade to Standard", downgrade_path %>
     <% end %>
   <% else %>
 
