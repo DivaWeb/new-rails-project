@@ -1,7 +1,17 @@
 class WikiPolicy < ApplicationPolicy
 
+  attr_reader :user, :wiki
+  def initialize(user, wiki)
+   @user = user
+   @wiki = wiki
+ end
+
   def index?
     true
+  end
+
+  def show?
+    scope.where(:id => wiki.id).exists?
   end
 
   def new?
