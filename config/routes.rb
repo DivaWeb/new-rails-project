@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'collaorators/index'
   resources :wikis
   resources :downgrades
   resources :charges, only: [:new, :create]

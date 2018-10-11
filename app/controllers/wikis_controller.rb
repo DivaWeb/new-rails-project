@@ -5,7 +5,7 @@ class WikisController < ApplicationController
     if current_user.standard?
       @wikis = Wiki.where(private: false)
     else
-    @wikis = Wiki.all
+    @wikis = policy_scope(Wiki)
     #authorize @wikis
   end
   end
