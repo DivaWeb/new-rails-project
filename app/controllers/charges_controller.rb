@@ -31,6 +31,26 @@ class ChargesController < ApplicationController
     }
   end
 
+  def destroy
+    customer = Stripe::Customer.retrieve(current_user.stripe_id)
+    if customer.delete
+      flash[:notice] = "\"#{current_user.email}\" was downgraded to standard successfully."
+      current_user.role = 'standard'
+      current_user.save!
+      wikis = current_user.wikis
+      wikis.each do |wiki|
+        if wiki.private
+          wiki.private = false
+          wiki.save!
+        end
+      end
+      redirect_to new_charge_path
+    else
+      flash.now[:alert] = "There was an error downgrading the user."
+      redirect_to new_charge_path
+    end
+  end
+
 
 
 end

@@ -5,7 +5,7 @@ class WikisController < ApplicationController
     if current_user.standard?
       @wikis = Wiki.where(private: false)
     else
-    @wikis = policy_scope(Wiki)
+    @wikis = Wiki.all
     #authorize @wikis
   end
   end
@@ -13,6 +13,14 @@ class WikisController < ApplicationController
 
   def show
     @wiki = Wiki.find(params[:id])
+    unless (@wiki.private == false) || current_user.premium? || current_user.admin?
+     flash[:alert] = "You must be a premium user to view private wikis."
+     if current_user
+       redirect_to new_charge_path
+     else
+       redirect_to new_user_registration_path
+     end
+   end
   end
 
   def new
