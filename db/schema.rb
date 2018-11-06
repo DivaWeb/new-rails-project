@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_21_223055) do
+ActiveRecord::Schema.define(version: 2018_11_06_153002) do
 
   create_table "collaborators", force: :cascade do |t|
     t.integer "wiki_id"
